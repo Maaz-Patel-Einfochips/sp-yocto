@@ -96,7 +96,7 @@ pipeline {
                     // Add custom layer to bblayers.conf
                     sh """
                         echo "# Adding custom layers to bblayers.conf"
-                        sed -i '/^BBLAYERS ?= /a \  /mnt/data/poky/meta-myhello \\' /mnt/data/poky/build/conf/bblayers.conf
+                        sed -i '/^BBLAYERS ?= /a \\  /mnt/build/poky/meta-myhello \\\\' /mnt/build/poky/build/conf/bblayers.conf
                     """
                 }
             }
