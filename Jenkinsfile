@@ -4,16 +4,16 @@ pipeline {
     }
 
     environment {
-        BASE_PATH = "/mnt/build" 
+        BASE_PATH = "/mnt/data" 
         NEW_DIR = "myhello"
 
         YOCTO_WORKSPACE   = "${BASE_PATH}/poky"
         POKY_DIR          = "${YOCTO_WORKSPACE}"
-        BUILD_DIR         = "${POKY_DIR}/build"
+        BUILD_DIR         = "${POKY_DIR}/data"
 
         SSTATE_DIR_PATH = '/mnt/efs/fs/yocto-sstate'
         DL_DIR_PATH     = '/mnt/efs/fs/yocto-dl'
-        TMP_DIR_PATH    = '/mnt/build/tmp'
+        TMP_DIR_PATH    = '/mnt/data/tmp'
 
         MACHINE         = 'qemux86-64'
         IMAGE           = 'core-image-minimal'
@@ -35,8 +35,8 @@ pipeline {
                     echo "Preparing Yocto workspace at ${YOCTO_WORKSPACE}"
                     sh """
                         echo "${YOCTO_WORKSPACE}"
-                        sudo chown -R jenkins:jenkins /mnt/build/*
-                        sudo chmod 755 /mnt/build/*
+                        sudo chown -R jenkins:jenkins /mnt/data/*
+                        sudo chmod 755 /mnt/data/*
                         mkdir -p /mnt/efs/fs/yocto-dl 
                         mkdir -p /mnt/efs/fs/yocto-sstate
                         sudo chown -R jenkins:jenkins /mnt/efs/fs/yocto-dl/
@@ -95,7 +95,7 @@ pipeline {
                     """
                     sh """
                         echo "# Adding custom layers to bblayers.conf"
-                        sed -i '/^BBLAYERS ?= /a \\  /mnt/build/poky/meta-myhello \\\\' /mnt/build/poky/build/conf/bblayers.conf
+                        sed -i '/^BBLAYERS ?= /a \\  /mnt/data/poky/meta-myhello \\\\' /mnt/data/poky/build/conf/bblayers.conf
                     """
                 }
             }
