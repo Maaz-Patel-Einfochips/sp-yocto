@@ -9,7 +9,7 @@ pipeline {
 
         YOCTO_WORKSPACE   = "${BASE_PATH}/poky"
         POKY_DIR          = "${YOCTO_WORKSPACE}"
-        BUILD_DIR         = "${POKY_DIR}/data"
+        BUILD_DIR         = "${POKY_DIR}/build"
 
         SSTATE_DIR_PATH = '/mnt/efs/fs/yocto-sstate'
         DL_DIR_PATH     = '/mnt/efs/fs/yocto-dl'
