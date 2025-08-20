@@ -1,4 +1,35 @@
 pipeline {
+    parameters{
+        choice(name: "BRANCH",
+            choices: ['5.0.x', 'release-GEM7000-1.4.0'],
+            description: "The branch to build")
+        booleanParam(name: 'resetBuildNumber',
+            defaultValue: false,
+            description: 'Reset Build Number to 1.')
+        booleanParam(name: 'baseRepo',
+            defaultValue: false,
+            description: 'Generate base repository.')
+        booleanParam(name: 'clearSharedState',
+            defaultValue: false,
+            description: 'Clear Shared State.')
+        booleanParam(name: 'skipTests',
+            defaultValue: false,
+            description: 'Skip Tests.')
+        choice(
+            name: 'RELEASE_BUILD',
+            choices: ['false', 'true'],
+            description: 'Release Build parameter: true/false'
+        )
+        string(name: "DUTIP",
+            defaultValue: "192.168.237.38",
+            trim: true,
+            description: "The IP address of the Device Under Test.")
+        booleanParam(name: 'Refresh',
+            defaultValue: false,
+            description: 'Refresh Jenkinsfile and exit.Do Not enable this.')
+        choice(name: "APTDISTROCODE",
+            choices: ['athens'],
+            description: "APT Distribution Code Name")
     agent {
         label 'Yocto'
     }
