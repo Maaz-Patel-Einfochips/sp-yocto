@@ -30,6 +30,7 @@ pipeline {
         choice(name: "APTDISTROCODE",
             choices: ['athens'],
             description: "APT Distribution Code Name")
+    }
     agent {
         label 'Yocto'
     }
